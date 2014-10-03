@@ -1,0 +1,15 @@
+{
+  "name": "ocamltop",
+  "main": "./lib/ocamltop",
+  "version": "0.0.0",
+  "description": "Ocaml-Top in Atom",
+  "activationEvents": ["ocamltop:toplevel"],
+  "repository": "https://github.com/atom/ocamltop",
+  "license": "MIT",
+  "engines": {
+    "atom": ">0.50.0"
+  },
+  "dependencies": {
+    "atom-message-panel": "^1.1.1"
+  }
+}

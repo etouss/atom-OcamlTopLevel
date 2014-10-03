@@ -1,0 +1,16 @@
+# See https://atom.io/docs/latest/creating-a-package#menus for more details
+'context-menu':
+  '.overlayer':
+      'Enable ocamltop': 'ocamltop:toplevel'
+
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'ocamltop'
+      'submenu': [
+        { 'label': 'TopLevel', 'command': 'ocamltop:toplevel' }
+      ]
+    ]
+  }
+]
