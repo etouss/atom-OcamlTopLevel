@@ -1,6 +1,6 @@
 TODO:
 
-- Problème si le fichier n'est pas un fichier .ml (ne pas activer l'interpréteur "afficher message ??")
+- Dictionaire OCaml pour passer les lignes.
 
 - Marquer sur le fichier source l'erreur de l'interpréteur s'il y en a une
 
@@ -47,3 +47,5 @@ DONE
 - Àpres l'exécution de plusieur interpréteur toujours afficher (au premier plan) l'interpréteur du fichier qui vient d'être compilé
 
 - Le titre du fichier ne doit pas être le nom du fichier mais un titre perso ex tp1.ml -> Ocaml Interpréteur tp1
+
+- Problème si le fichier n'est pas un fichier .ml (ne pas activer l'interpréteur "afficher message ??")
