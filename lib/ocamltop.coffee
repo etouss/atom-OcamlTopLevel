@@ -14,7 +14,7 @@ module.exports =
     fs = require 'fs'
     #emitter = require 'emitter'
     #emitter.setMaxListeners 100
-    #ls = spawn 'ls '
+    #ls = spawn '/Users/ByTeK/.atom/packages/ocamltop/node_modules/Ocaml_Interpreteur.sh'
     #ls.stdout.on 'data', ( data ) -> console.log "Output: #{ data }"
     #ls.stderr.on 'data', ( data ) -> console.error "Error: #{ data }"
     #ls.on 'close', -> console.log "'ls' has finished executing."
@@ -32,8 +32,9 @@ module.exports =
     string = foo().toString()
     # tempStream = fs.createWriteStream(uri,\
     #    {flags: 'w'});
+    console.log "#{ uri }"
 
-    ocaml = spawn './node_modules/Ocaml_Interpreteur.sh',["#{ f }","#{ uri }"]
+    ocaml = spawn '/Users/ByTeK/.atom/packages/ocamltop/node_modules/Ocaml_Interpreteur.sh',["#{ f }","#{ uri }"]
     ocaml.once 'close', -> console.log "'ocaml' has finished executing."
     ocaml.exit
 
