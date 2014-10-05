@@ -26,7 +26,7 @@ module.exports =
     f = file.getPath()
     file_name = "#{ file.getBaseName() }"#.replace /.ml/, ""
 
-    uri = "#{ directoryPath }/tmp/OCaml Interpréteur #{ file_name }"
+    uri = "#{ directoryPath }/.OCaml Interpréteur #{ file_name }"
 
     foo = -> fs.readFileSync filePath, 'utf8'
     string = foo().toString()
