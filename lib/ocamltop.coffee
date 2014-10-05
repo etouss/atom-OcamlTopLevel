@@ -32,10 +32,10 @@ module.exports =
     #directoryPath = atom.project.getPath()
     f = file.getPath()
     file_name = "#{ file.getBaseName() }"#.replace /.ml/, ""
-
+    #strings = file_name.split '.'
     #test si ML
     strings = file_name.split "."
-    if console.log strings[strings.length-1].charAt(0) == 'm' and console.log strings[strings.length-1].charAt(1) == 'l' and  strings[strings.length-1].length == 2
+    if strings[strings.length-1].length != 2 or strings[strings.length-1].charAt(0) != 'm' or strings[strings.length-1].charAt(1) != 'l'
       return
 
     uri = "#{ home }/.atom/packages/ocamltop/temp/#{ file_name }"
