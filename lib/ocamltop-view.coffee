@@ -3,11 +3,12 @@
 module.exports =
 class OcamltopView extends View
   @content: ->
-    @div class: 'ocamltop overlay from-bottom', =>
-      @div "The Ocamltop package is Alive! It's ALIVE!", class: "message"
+    console.log "Connard"
+    @div class: 'ocamltop overlay from-top', =>
+      @div "Erreur le fichier n'est pas un fichier .ml", class: "message"
 
   initialize: (serializeState) ->
-    atom.workspaceView.command "ocamltop:toggle", => @toggle()
+    atom.workspaceView.command "ocamltop:toplevel", => @toggle()
 
   # Returns an object that can be retrieved when package is activated
   serialize: ->

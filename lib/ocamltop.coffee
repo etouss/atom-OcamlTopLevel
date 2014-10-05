@@ -7,6 +7,7 @@ module.exports =
   activate: (state) ->
     atom.workspaceView.command "ocamltop:toplevel", => @toplevel()
 
+
   getUserHome: ->
     process.env.HOME or process.env.HOMEPATH or process.env.USERPROFILE
 
@@ -29,6 +30,7 @@ module.exports =
     if strings[strings.length-1].length != 2 or \
             strings[strings.length-1].charAt(0) != 'm' or\
             strings[strings.length-1].charAt(1) != 'l'
+      #@ocamltopView = new OcamltopView(state.ocamltopViewState)
       return
 
     # chemin vers le fichier tmp Interprété
