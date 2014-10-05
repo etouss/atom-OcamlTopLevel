@@ -7,6 +7,8 @@ module.exports =
   activate: (state) ->
     atom.workspaceView.command "ocamltop:toplevel", => @toplevel()
 
+  getUserHome: ->
+    process.env.HOME or process.env.HOMEPATH or process.env.USERPROFILE
 
   toplevel: ->
     { spawn } = require 'child_process'
@@ -19,6 +21,7 @@ module.exports =
     #ls.stderr.on 'data', ( data ) -> console.error "Error: #{ data }"
     #ls.on 'close', -> console.log "'ls' has finished executing."
 
+    home = @getUserHome()
     editor = atom.workspace.getActivePaneItem()
     file = editor?.buffer.file
     filePath = file?.path
@@ -32,9 +35,9 @@ module.exports =
     string = foo().toString()
     # tempStream = fs.createWriteStream(uri,\
     #    {flags: 'w'});
-    console.log "#{ uri }"
+    #console.log "#{ uri }"
 
-    ocaml = spawn '/Users/ByTeK/.atom/packages/ocamltop/node_modules/Ocaml_Interpreteur.sh',["#{ f }","#{ uri }"]
+    ocaml = spawn "#{ home }/.atom/packages/ocamltop/node_modules/Ocaml_Interpreteur.sh",["#{ f }","#{ uri }"]
     ocaml.once 'close', -> console.log "'ocaml' has finished executing."
     ocaml.exit
 
