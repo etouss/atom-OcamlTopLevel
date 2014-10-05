@@ -1,8 +1,6 @@
 TODO:
 - Problème si le fichier n'est pas un fichier .ml (ne pas activer l'interpréteur "afficher message ??")
 
-- À la fermeture de l'onglet suppr le fichier interpréteur
-
 - Marquer sur le fichier source l'erreur de l'interpréteur s'il y en a une
 
 - Option pour l'interpréteur : interpréter une selection/(curseur -> ;;) ou tout le fichier
@@ -45,3 +43,5 @@ DONE
 5/10 9h:
 
 - Avoir un nom perso pour chaque fichier temporaire (possibilité d'avoir plusieur fichier interprété côte à côte)
+
+- À la fermeture de l'onglet suppr le fichier interpréteur
