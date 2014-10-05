@@ -16,16 +16,9 @@ TODO:
 
 - Mettre le fichier Interpréteur dans un dossier temporaire ex /tmp/ ou ne pas utiliser de fichier mais un "render"
 
-- Le titre du fichier ne doit pas être le nom du fichier mais un titre perso ex tp1.ml -> Ocaml Interpréteur tp1
-
-
 - Nettoyer le code
 
-- Àpres l'exécution de plusieur interpréteur toujours afficher (au premier plan) l'interpréteur du fichier qui vient d'être compilé
-
 - Option : MAJ auto de l'interpréteur ("on save") ??
-
-- Mettre la colorisation automatique (automatique si c'est un fichier .ml)
 
 - Uncaught Error: No screen line exists when converting buffer row to screen row
 
@@ -48,3 +41,9 @@ DONE
 - Garder le focus sur sur le fichier source
 
 - Si l'interpréteur est ouvert et que le fichier n'a pas changé ne pas metrre a jour l'interpréteur
+
+- Mettre la colorisation automatique (automatique si c'est un fichier .ml)
+
+- Àpres l'exécution de plusieur interpréteur toujours afficher (au premier plan) l'interpréteur du fichier qui vient d'être compilé
+
+- Le titre du fichier ne doit pas être le nom du fichier mais un titre perso ex tp1.ml -> Ocaml Interpréteur tp1
