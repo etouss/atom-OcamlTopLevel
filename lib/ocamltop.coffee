@@ -25,11 +25,11 @@ module.exports =
     editor = atom.workspace.getActivePaneItem()
     file = editor?.buffer.file
     filePath = file?.path
-    directoryPath = atom.project.getPath()
+    #directoryPath = atom.project.getPath()
     f = file.getPath()
     file_name = "#{ file.getBaseName() }"#.replace /.ml/, ""
 
-    uri = "#{ directoryPath }/.OCaml Interpréteur #{ file_name }"
+    uri = "#{ home }/.atom/packages/ocamltop/temp/#{ file_name }"
 
     foo = -> fs.readFileSync filePath, 'utf8'
     string = foo().toString()
