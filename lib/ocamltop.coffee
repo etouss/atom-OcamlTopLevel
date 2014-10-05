@@ -4,6 +4,26 @@ url = require 'url'
 module.exports =
   ocamltopView: null
 
+  getCursors : (editor) ->
+    cursors = editor.getCursors()
+    posArray = []
+    for cursor in cursors
+      bufferPosition = cursor.getBufferPosition()
+      posArray.push [
+        bufferPosition.row
+        bufferPosition.column
+      ]
+    posArray
+
+  setCursors : (editor, posArray) ->
+  # console.log "setCursors: #{posArray}"
+    for bufferPosition, i in posArray
+      if i is 0
+        editor.setCursorBufferPosition bufferPosition
+        continue
+      editor.addCursorAtBufferPosition bufferPosition
+    return
+
   activate: (state) ->
     atom.workspaceView.command "ocamltop:toplevel", => @toplevel()
 
@@ -49,17 +69,24 @@ module.exports =
       rm = spawn 'rm',["-f","#{ uri }"]
       rm.once 'close', -> console.log "'rm' has finished executing."
       rm.exit
-
     editor.onDidDestroy(clean)
 
-
+    userPanel = atom.workspace.getActivePane()
     previewPane = atom.workspace.paneForUri(uri)
     if previewPane
+      previewPane.activateItemForUri(uri) 
+      userPanel.activate()
       return
 
-    previousActivePane = atom.workspace.getActivePane()
-    atom.workspace.open(uri, split: 'right', searchAllPanes: true).done
+    userPanelHandle = ->
+        userPanel.activate()
+    atom.workspace.onDidOpen(userPanelHandle)
 
+
+    atom.workspace.open(uri, split: 'right', searchAllPanes: true, activatePane: true).done
+    #newPane = atom.workspace.getActivePane()
+    #interpreterPane.activateItemForUri(uri)
+    #activePane.activate()
 
   deactivate: ->
 
