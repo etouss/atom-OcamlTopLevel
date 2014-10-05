@@ -1,11 +1,12 @@
 OcamltopView = require './ocamltop-view'
-
+url = require 'url'
 
 module.exports =
   ocamltopView: null
 
   activate: (state) ->
     atom.workspaceView.command "ocamltop:toplevel", => @toplevel()
+
 
   toplevel: ->
     { spawn } = require 'child_process'
@@ -22,30 +23,31 @@ module.exports =
     file = editor?.buffer.file
     filePath = file?.path
     directoryPath = atom.project.getPath()
+    f = file.getPath()
+    file_name = "#{ file.getBaseName() }"#.replace /.ml/, ""
 
-    topStream = fs.createWriteStream("#{ directoryPath }/toplevel.ml", {flags: 'a'});
+    uri = "#{ directoryPath }/tmp/OCaml Interpréteur #{ file_name }"
+
     foo = -> fs.readFileSync filePath, 'utf8'
-    string = foo().split ";;"
+    string = foo().toString()
+    # tempStream = fs.createWriteStream(uri,\
+    #    {flags: 'w'});
 
-    tempStream = fs.createWriteStream("#{ directoryPath }/temp.ml", {flags: 'w'});
+    ocaml = spawn './node_modules/Ocaml_Interpreteur.sh',["#{ f }","#{ uri }"]
+    ocaml.once 'close', -> console.log "'ocaml' has finished executing."
+    ocaml.exit
 
-    for str in string
-      ecrire = spawn 'echo' , ["#{ str };;"]
-      ecrire.stdout.pipe(tempStream)# 'data',(data) -> console.log "Output: #{ data }"
-      ecrire.stderr.pipe(tempStream)# -> console.log "Error: #{ data }"
-      ecrire.once 'close', -> console.log "'ecrire' has finished executing."
-      ecrire.exit
+    previewPane = atom.workspace.paneForUri(uri)
+    if previewPane
+      return
 
-      ocaml = spawn '/usr/local/bin/ocamlc', ['-i',"#{ directoryPath }/temp.ml"]
-      ocaml.stdout.pipe(topStream)# 'data',(data) -> console.log "Output: #{ data }"
-      ocaml.stderr.pipe(topStream)# -> console.log "Error: #{ data }"
-      ocaml.once 'close', -> console.log "'ocamlc -i' has finished executing."
-      ocaml.exit
+    previousActivePane = atom.workspace.getActivePane()
+    atom.workspace.open(uri, split: 'right', searchAllPanes: true).done
 
-    return
 
   deactivate: ->
-    #@ocamltopView.destroy()
+
+    @ocamltopView.destroy()
 
   serialize: ->
     ocamltopViewState: @ocamltopView.serialize()
