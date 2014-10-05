@@ -33,6 +33,11 @@ module.exports =
     f = file.getPath()
     file_name = "#{ file.getBaseName() }"#.replace /.ml/, ""
 
+    #test si ML
+    strings = file_name.split "."
+    if console.log strings[strings.length-1].charAt(0) == 'm' and console.log strings[strings.length-1].charAt(1) == 'l' and  strings[strings.length-1].length == 2
+      return
+
     uri = "#{ home }/.atom/packages/ocamltop/temp/#{ file_name }"
 
     #foo = -> fs.readFileSync filePath, 'utf8'

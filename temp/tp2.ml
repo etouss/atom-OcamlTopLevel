@@ -36,3 +36,4 @@ val union_sorted : 'a list -> 'a list -> 'a list = <fun>
 - : int list = [1; 2; 3; 5; 7; 9; 10; 11]
 val inter_sorted : 'a list -> 'a list -> 'a list = <fun>
 - : int list = [5]
+
