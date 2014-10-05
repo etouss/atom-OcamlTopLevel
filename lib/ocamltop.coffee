@@ -27,12 +27,7 @@ module.exports =
     #strings = file_name.split '.'
     #test si ML
     strings = file_name.split "."
-<<<<<<< HEAD
     if strings[strings.length-1].length != 2 or strings[strings.length-1].charAt(0) != 'm' or strings[strings.length-1].charAt(1) != 'l'
-=======
-    if console.log strings[strings.length-1].charAt(0) == 'm' and console.log strings[strings.length-1].charAt(1) == 'l' and  strings[strings.length-1].length == 2
-      # marche pas ???
->>>>>>> 2f9c68d31fb0101ac0eec8dc99c99af0b97a64af
       return
 
     # chemin vers le fichier tmp Interprété
