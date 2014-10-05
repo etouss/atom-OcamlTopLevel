@@ -14,70 +14,61 @@ module.exports =
 
     { spawn } = require 'child_process'
     {EventEmitter} = require 'events'
-    fs = require 'fs'
-    #emitter = require 'emitter'
-    #emitter.setMaxListeners 100
-    #ls = spawn '/Users/ByTeK/.atom/packages/ocamltop/node_modules/Ocaml_Interpreteur.sh'
-    #ls.stdout.on 'data', ( data ) -> console.log "Output: #{ data }"
-    #ls.stderr.on 'data', ( data ) -> console.error "Error: #{ data }"
-    #ls.on 'close', -> console.log "'ls' has finished executing."
-
     home = @getUserHome()
     editor = atom.workspace.getActivePaneItem()
 
-    #editor.onDidDestroy(()->console.log "test")
-
-    file = editor?.buffer.file
+    file = editor?.buffer.file # Donne l'Objet du fichier courant
     filePath = file?.path
-    #directoryPath = atom.project.getPath()
+
+    # extrait le chemin "absolu" du fichier courant
     f = file.getPath()
+    # nom du fichier courant
     file_name = "#{ file.getBaseName() }"#.replace /.ml/, ""
     #strings = file_name.split '.'
     #test si ML
     strings = file_name.split "."
+<<<<<<< HEAD
     if strings[strings.length-1].length != 2 or strings[strings.length-1].charAt(0) != 'm' or strings[strings.length-1].charAt(1) != 'l'
+=======
+    if console.log strings[strings.length-1].charAt(0) == 'm' and console.log strings[strings.length-1].charAt(1) == 'l' and  strings[strings.length-1].length == 2
+      # marche pas ???
+>>>>>>> 2f9c68d31fb0101ac0eec8dc99c99af0b97a64af
       return
 
+    # chemin vers le fichier tmp Interprété
     uri = "#{ home }/.atom/packages/ocamltop/temp/#{ file_name }"
 
-    #foo = -> fs.readFileSync filePath, 'utf8'
-    #string = foo().toString()
-    # tempStream = fs.createWriteStream(uri,\
-    #    {flags: 'w'});
-    #console.log "#{ uri }"
-
+    # exécution du scripte qui interprete le fichier .ml et ecrit dans le fichier tmp
     ocaml = spawn "#{ home }/.atom/packages/ocamltop/node_modules/Ocaml_Interpreteur.sh",["#{ f }","#{ uri }"]
     ocaml.once 'close', -> console.log "'ocaml' has finished executing."
     ocaml.exit
 
+    # fonction qui efface le fichier tmp quand le fichier le fichier source est fermé
     clean = ->
       rm = spawn 'rm',["-f","#{ uri }"]
       rm.once 'close', -> console.log "'rm' has finished executing."
       rm.exit
     editor.onDidDestroy(clean)
 
-    userPanel = atom.workspace.getActivePane()
-    previewPane = atom.workspace.paneForUri(uri)
+    userPanel = atom.workspace.getActivePane() # panel du fichier source
+    previewPane = atom.workspace.paneForUri(uri) # panel du fichier tmp
 
+    # si le fichier tmp est deja ouvert on le met au premier plan de son pane
     if previewPane
       previewPane.activateItemForUri(uri)
-      #@traiter(atom.workspace.getActivePaneItem().getText())
       userPanel.activate()
-      #console.log userPanel
       return
 
+    # Fonction pour récupérer la main sur le fichier source
     userPanelHandle = ->
-        #@traiter(atom.workspace.getActivePaneItem().getText())
-        userPanel.activate()
+      #@traiter(atom.workspace.getActivePaneItem().getText())
+      userPanel.activate()
 
+    # une fois le fichier tmp ouvert on réccupere la main sur la source
     atom.workspace.onDidOpen(userPanelHandle)
 
-
+    # on split le panel et on ouvre le fichier tmp
     atom.workspace.open(uri, split: 'right', searchAllPanes: true, activatePane: true).done
-    #interpreteur.onWillInsertText(->console.log "test")
-    #newPane = atom.workspace.getActivePane()
-    #interpreterPane.activateItemForUri(uri)
-    #activePane.activate()
 
   traiter: (texte)-> console.log "Coucou"
 
