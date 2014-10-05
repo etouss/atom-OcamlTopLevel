@@ -1,4 +1,4 @@
-        OCaml version 4.02.0
+        OCaml version 4.01.0
 
 val list_sigma : int list -> int = <fun>
 
@@ -18,6 +18,7 @@ val is_sorted : 'a list -> bool = <fun>
 
 - : bool = true
 
+<<<<<<< HEAD
 # let rec append u v = match u with | x::w -> x::(append w v);;
 
 Warning 8: this pattern-matching is not exhaustive.
@@ -33,11 +34,21 @@ Exception: Match_failure ("//toplevel//", 1, 21).
 val inverse : 'a list -> 'a list = <fun>
 
 Exception: Match_failure ("//toplevel//", 1, 21).
+=======
+val append : 'a list -> 'a list -> 'a list = <fun>
+
+- : int list = [1; 2; 3; 4; 5; 6]
+
+val inverse : 'a list -> 'a list = <fun>
+
+- : int list = [4; 3; 2; 1]
+>>>>>>> 4b0cdb90bd3e2eed33c7936e3a8967e1b7eda822
 
 val inverse : 'a list -> 'a list = <fun>
 
 val flatten : 'a list list -> 'a list = <fun>
 
+<<<<<<< HEAD
 Exception: Match_failure ("//toplevel//", 1, 21).
 
 # let rotation_d u = match u with | []->[] | x::[]->u | x::q -> match (inverse q) with y :: p -> y::q@[x];;
@@ -51,6 +62,13 @@ Here is an example of a value that is not matched:
 val rotation_d : 'a list -> 'a list = <fun>
 
 - : int list = [5; 2; 3; 4; 5; 1]
+=======
+- : int list = [2; 3; 4; 5]
+
+val rotation_d : 'a list -> 'a list = <fun>
+
+- : int list = [5; 2; 3; 4; 1]
+>>>>>>> 4b0cdb90bd3e2eed33c7936e3a8967e1b7eda822
 
 val moyenne : int list -> int = <fun>
 
