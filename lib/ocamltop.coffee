@@ -4,26 +4,6 @@ url = require 'url'
 module.exports =
   ocamltopView: null
 
-  getCursors : (editor) ->
-    cursors = editor.getCursors()
-    posArray = []
-    for cursor in cursors
-      bufferPosition = cursor.getBufferPosition()
-      posArray.push [
-        bufferPosition.row
-        bufferPosition.column
-      ]
-    posArray
-
-  setCursors : (editor, posArray) ->
-  # console.log "setCursors: #{posArray}"
-    for bufferPosition, i in posArray
-      if i is 0
-        editor.setCursorBufferPosition bufferPosition
-        continue
-      editor.addCursorAtBufferPosition bufferPosition
-    return
-
   activate: (state) ->
     atom.workspaceView.command "ocamltop:toplevel", => @toplevel()
 
@@ -55,8 +35,8 @@ module.exports =
 
     uri = "#{ home }/.atom/packages/ocamltop/temp/#{ file_name }"
 
-    foo = -> fs.readFileSync filePath, 'utf8'
-    string = foo().toString()
+    #foo = -> fs.readFileSync filePath, 'utf8'
+    #string = foo().toString()
     # tempStream = fs.createWriteStream(uri,\
     #    {flags: 'w'});
     #console.log "#{ uri }"
@@ -73,20 +53,28 @@ module.exports =
 
     userPanel = atom.workspace.getActivePane()
     previewPane = atom.workspace.paneForUri(uri)
+
     if previewPane
-      previewPane.activateItemForUri(uri) 
+      previewPane.activateItemForUri(uri)
+      #@traiter(atom.workspace.getActivePaneItem().getText())
       userPanel.activate()
+      #console.log userPanel
       return
 
     userPanelHandle = ->
+        #@traiter(atom.workspace.getActivePaneItem().getText())
         userPanel.activate()
+
     atom.workspace.onDidOpen(userPanelHandle)
 
 
     atom.workspace.open(uri, split: 'right', searchAllPanes: true, activatePane: true).done
+    #interpreteur.onWillInsertText(->console.log "test")
     #newPane = atom.workspace.getActivePane()
     #interpreterPane.activateItemForUri(uri)
     #activePane.activate()
+
+  traiter: (texte)-> console.log "Coucou"
 
   deactivate: ->
 
