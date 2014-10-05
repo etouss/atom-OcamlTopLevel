@@ -1,10 +1,7 @@
 TODO:
 
-<<<<<<< HEAD
 - Problème si le fichier n'est pas un fichier .ml (ne pas activer l'interpréteur "afficher message ??")
 
-=======
->>>>>>> ded54ec019fe68299819b531dd475f8d1198f37b
 - Marquer sur le fichier source l'erreur de l'interpréteur s'il y en a une
 
 - Option pour l'interpréteur : interpréter une selection/(curseur -> ;;) ou tout le fichier
@@ -21,7 +18,6 @@ TODO:
 
 - Le titre du fichier ne doit pas être le nom du fichier mais un titre perso ex tp1.ml -> Ocaml Interpréteur tp1
 
-- Garder le focus sur sur le fichier source
 
 - Nettoyer le code
 
@@ -33,7 +29,6 @@ TODO:
 
 - Uncaught Error: No screen line exists when converting buffer row to screen row
 
-- Si l'interpréteur est ouvert et que le fichier n'a pas changé ne pas metrre a jour l'interpréteur
 
 DONE
 
@@ -49,3 +44,7 @@ DONE
 - Avoir un nom perso pour chaque fichier temporaire (possibilité d'avoir plusieur fichier interprété côte à côte)
 
 - À la fermeture de l'onglet suppr le fichier interpréteur
+
+- Garder le focus sur sur le fichier source
+
+- Si l'interpréteur est ouvert et que le fichier n'a pas changé ne pas metrre a jour l'interpréteur
