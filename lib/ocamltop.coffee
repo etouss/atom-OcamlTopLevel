@@ -26,7 +26,9 @@ module.exports =
     file_name = "#{ file.getBaseName() }"#.replace /.ml/, ""
     #test si ML
     strings = file_name.split "."
-    if strings[strings.length-1].length != 2 or strings[strings.length-1].charAt(0) != 'm' or strings[strings.length-1].charAt(1) != 'l'
+    if strings[strings.length-1].length != 2 or \
+            strings[strings.length-1].charAt(0) != 'm' or\
+            strings[strings.length-1].charAt(1) != 'l'
       return
 
     # chemin vers le fichier tmp Interprété
@@ -46,14 +48,17 @@ module.exports =
       fs.writeFile uri, texte2
       #console.log texte2
 
-    # exécution du scripte qui interprete le fichier .ml et ecrit dans le fichier tmp
-    ocaml = spawn "#{ home }/.atom/packages/ocamltop/node_modules/Ocaml_Interpreteur.sh",["#{ f }","#{ uri }"]
+    # exécution du scripte qui interprete le fichier .ml
+    # et ecrit dans le fichier tmp
+    ocaml = spawn "#{ home }/.atom/packages/ocamltop/node_modules/\
+                    Ocaml_Interpreteur.sh",["#{ f }","#{ uri }"]
     ocaml.once 'close', traiter
     ocaml.exit
 
     #@traiter(uri)
     #console.log bool
-    # fonction qui efface le fichier tmp quand le fichier le fichier source est fermé
+    # fonction qui efface le fichier tmp quand
+    #le fichier le fichier source est fermé
     clean = ->
       rm = spawn 'rm',["-f","#{ uri }"]
       rm.once 'close', -> console.log "'rm' has finished executing."
@@ -79,7 +84,8 @@ module.exports =
     atom.workspace.onDidOpen(userPanelHandle)
 
     # on split le panel et on ouvre le fichier tmp
-    atom.workspace.open(uri, split: 'right', searchAllPanes: true, activatePane: false).done
+    atom.workspace.open(uri, split: 'right', \
+                        searchAllPanes: true, activatePane: false).done
 
 
   deactivate: ->
