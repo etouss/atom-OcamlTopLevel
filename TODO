@@ -1,0 +1,47 @@
+TODO:
+- Problème si le fichier n'est pas un fichier .ml (ne pas activer l'interpréteur "afficher message ??")
+
+- À la fermeture de l'onglet suppr le fichier interpréteur
+
+- Marquer sur le fichier source l'erreur de l'interpréteur s'il y en a une
+
+- Option pour l'interpréteur : interpréter une selection/(curseur -> ;;) ou tout le fichier
+
+- !!Le fichier interpréteur ne devrai pas être modifiable!! mais par contre on peut copier du texte
+
+- Ne pas utiliser un script pour le lancement de l'interpréteur
+
+- Ajouter des saut de ligne pour l'affichage de l'interpréteur
+
+- Possiblilité de sauvegarder l'interpréteur?? (avec raccourci clavier??)
+
+- Mettre le fichier Interpréteur dans un dossier temporaire ex /tmp/ ou ne pas utiliser de fichier mais un "render"
+
+- Le titre du fichier ne doit pas être le nom du fichier mais un titre perso ex tp1.ml -> Ocaml Interpréteur tp1
+
+- Garder le focus sur sur le fichier source
+
+- Nettoyer le code
+
+- Àpres l'exécution de plusieur interpréteur toujours afficher (au premier plan) l'interpréteur du fichier qui vient d'être compilé
+
+- Option : MAJ auto de l'interpréteur ("on save") ??
+
+- Mettre la colorisation automatique (automatique si c'est un fichier .ml)
+
+- Uncaught Error: No screen line exists when converting buffer row to screen row
+
+- Si l'interpréteur est ouvert et que le fichier n'a pas changé ne pas metrre a jour l'interpréteur
+
+DONE
+
+4/10: 18h
+
+- Ouverture automatique de l'écran splité a droite
+
+- raccourci clavier ctrl-i (interprete tout le fichier)
+
+
+5/10 9h:
+
+- Avoir un nom perso pour chaque fichier temporaire (possibilité d'avoir plusieur fichier interprété côte à côte)
