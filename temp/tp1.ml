@@ -1,8 +1,9 @@
-        OCaml version 4.01.0
+        OCaml version 4.02.0
 
 val carree : int -> int = <fun>
 
 val perimetre : float -> float = <fun>
+<<<<<<< HEAD
 
 val bis : string -> string = <fun>
 
@@ -31,5 +32,10 @@ val vider : int -> int = <fun>
 val x : int = 2
 
 - : int = 7
+=======
+# perimetre 10;;
+Error: This expression has type int but an expression was expected of type
+         float
+>>>>>>> 40cb36ec1d3312aa36ffad2eb4d355577cf10816
 
 - : int = 6
