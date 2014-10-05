@@ -11,6 +11,7 @@ module.exports =
     process.env.HOME or process.env.HOMEPATH or process.env.USERPROFILE
 
   toplevel: ->
+
     { spawn } = require 'child_process'
     {EventEmitter} = require 'events'
     fs = require 'fs'
@@ -23,6 +24,9 @@ module.exports =
 
     home = @getUserHome()
     editor = atom.workspace.getActivePaneItem()
+
+    #editor.onDidDestroy(()->console.log "test")
+
     file = editor?.buffer.file
     filePath = file?.path
     #directoryPath = atom.project.getPath()
@@ -40,6 +44,14 @@ module.exports =
     ocaml = spawn "#{ home }/.atom/packages/ocamltop/node_modules/Ocaml_Interpreteur.sh",["#{ f }","#{ uri }"]
     ocaml.once 'close', -> console.log "'ocaml' has finished executing."
     ocaml.exit
+
+    clean = ->
+      rm = spawn 'rm',["-f","#{ uri }"]
+      rm.once 'close', -> console.log "'rm' has finished executing."
+      rm.exit
+
+    editor.onDidDestroy(clean)
+
 
     previewPane = atom.workspace.paneForUri(uri)
     if previewPane
