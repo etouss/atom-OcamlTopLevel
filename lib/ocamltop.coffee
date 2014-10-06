@@ -1,22 +1,28 @@
 OcamltopView = require './ocamltop-view'
 url = require 'url'
+{MessagePanelView, LineMessageView} = require 'atom-message-panel'
 
 module.exports =
   ocamltopView: null
 
   activate: (state) ->
-    atom.workspaceView.command "ocamltop:toplevel", => @toplevel()
+    messages = new MessagePanelView rawTitle: true, title: \
+          '<font color="red" >Ocaml Top Interpréteur</font>'
+    atom.workspaceView.command "ocamltop:toplevel", => @toplevel(messages)
 
 
   getUserHome: ->
     process.env.HOME or process.env.HOMEPATH or process.env.USERPROFILE
 
-  toplevel: ->
+  toplevel: (messages) ->
     { spawn } = require 'child_process'
     {EventEmitter} = require 'events'
     home = @getUserHome()
     editor = atom.workspace.getActivePaneItem()
     userPanel = atom.workspace.getActivePane()
+    # Message d'erreur
+    messages.close()
+    messages.clear()
 
     file = editor?.buffer.file # Donne l'Objet du fichier courant
     #filePath = file?.path
@@ -31,8 +37,11 @@ module.exports =
             strings[strings.length-1].charAt(0) != 'm' or\
             strings[strings.length-1].charAt(1) != 'l'
       #@ocamltopView = new OcamltopView(state.ocamltopViewState)
-      return
 
+      messages.attach()
+      messages.add new LineMessageView file : file_name, message: \
+                            'Erreur le fichier n\'est pas un fichier .ml'
+      return
     # chemin vers le fichier tmp Interprété
     uri = "#{ home }/.atom/packages/ocamltop/temp/#{ file_name }"
 
@@ -91,7 +100,7 @@ module.exports =
 
 
   deactivate: ->
-
+    @messages.close()
     @ocamltopView.destroy()
 
   serialize: ->
