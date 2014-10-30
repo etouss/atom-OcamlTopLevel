@@ -21,6 +21,7 @@ describe "Ocamltop", ->
       # activated.
       atom.workspaceView.trigger 'ocamltop:toggle'
 
+
       waitsForPromise ->
         activationPromise
 

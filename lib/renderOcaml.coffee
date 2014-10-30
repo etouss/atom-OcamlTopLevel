@@ -62,15 +62,15 @@ class AtomHtmlPreviewView extends ScrollView
 
   handleEvents: ->
 
-    changeHandler = =>
-      @renderHTML()
-      pane = atom.workspace.paneForUri(@getUri())
-      if pane? and pane isnt atom.workspace.getActivePane()
-        pane.activateItem(this)
-
-    if @editor?
-      @subscribe(@editor.getBuffer(), 'contents-modified', changeHandler)
-      @subscribe @editor, 'path-changed', => @trigger 'title-changed'
+    # changeHandler = =>
+    #   @renderHTML()
+    #   pane = atom.workspace.paneForUri(@getUri())
+    #   if pane? and pane isnt atom.workspace.getActivePane()
+    #     pane.activateItem(this)
+    #
+    # if @editor?
+    #   @subscribe(@editor.getBuffer(), 'contents-modified', changeHandler)
+    #   @subscribe @editor, 'path-changed', => @trigger 'title-changed'
 
   renderHTML: (text)->
     @showLoading()
