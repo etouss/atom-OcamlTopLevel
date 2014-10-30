@@ -1,6 +1,8 @@
 OcamltopView = require './ocamltop-view'
 url = require 'url'
 {MessagePanelView, LineMessageView} = require 'atom-message-panel'
+sys = require('sys')
+exec = require('child_process').exec
 
 module.exports =
   ocamltopView: null
@@ -61,10 +63,13 @@ module.exports =
 
     # exécution du scripte qui interprete le fichier .ml
     # et ecrit dans le fichier tmp
-    ocaml = spawn "#{ home }/.atom/packages/ocamltop/node_modules/\
-                    Ocaml_Interpreteur.sh",["#{ f }","#{ uri }"]
-    ocaml.once 'close', traiter
-    ocaml.exit
+    console.log "#{ f }"
+    exec "env -i ocaml -noprompt -nopromptcont < #{f} > #{ uri }; env -i ocaml -noprompt -nopromptcont - #{f} >> #{ uri } "
+
+    #ocaml = spawn "#{ home }/.atom/packages/ocamltop/node_modules/\
+    #                Ocaml_Interpreteur.sh",["#{ f }","#{ uri }"]
+    #ocaml.once 'close', traiter
+    #ocaml.exit
 
     #@traiter(uri)
     #console.log bool
