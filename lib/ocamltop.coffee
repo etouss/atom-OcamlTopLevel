@@ -47,24 +47,24 @@ module.exports =
     # chemin vers le fichier tmp Interprété
     uri = "#{ home }/.atom/packages/ocamltop/temp/#{ file_name }"
 
-    traiter = ->
-      fs = require 'fs'
-      #foo = -> fs.readFileSync uri, 'utf-8'
-      texte = fs.readFileSync uri, 'utf-8'
-      texte2 = ""
-      i = 0
-      for char in texte
-        i++
-        texte2 += char
-        if char == '\n' and i > 30
-          texte2 += '\n'
-      fs.writeFile uri, texte2
+    # traiter = ->
+    #   fs = require 'fs'
+    #   #foo = -> fs.readFileSync uri, 'utf-8'
+    #   texte = fs.readFileSync uri, 'utf-8'
+    #   texte2 = ""
+    #   i = 0
+    #   for char in texte
+    #     i++
+    #     texte2 += char
+    #     if char == '\n' and i > 30
+    #       texte2 += '\n'
+    #   fs.writeFile uri, texte2
       #console.log texte2
 
     # exécution du scripte qui interprete le fichier .ml
     # et ecrit dans le fichier tmp
     console.log "#{ f }"
-    exec "env -i ocaml -noprompt -nopromptcont < #{f} > #{ uri }; env -i ocaml -noprompt -nopromptcont - #{f} >> #{ uri } "
+    exec "env -i ocaml -noprompt -nopromptcont < #{f} > #{ uri }"
 
     #ocaml = spawn "#{ home }/.atom/packages/ocamltop/node_modules/\
     #                Ocaml_Interpreteur.sh",["#{ f }","#{ uri }"]

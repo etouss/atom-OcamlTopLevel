@@ -45,10 +45,11 @@ val print_list : string list -> unit = <fun>
 val get_files_names : in_channel bit_channel -> int -> string list = <fun>
 val decode_dir :
   string list -> (int * 'a) tree -> in_channel bit_channel -> unit = <fun>
-val real_decode_dir : string -> unit = <fun>
-Exception:
-Sys_error
- "/media/data/git/ProjetL3/PF5/Projet/Didel/Bibliotheque_bitio/Dossier_test/grosDoss.hf: No such file or directory".
+val real_de : 'a -> string -> unit = <fun>
+Characters 9-24:
+  let _ = real_decode_dir "/media/data/git/ProjetL3/PF5/Projet/Didel/Bibliotheque_bitio/Dossier_test/grosDoss.hf";;
+          ^^^^^^^^^^^^^^^
+Error: Unbound value real_decode_dir
 val decode : bool ref = {contents = false}
 val run : string -> unit = <fun>
 val main : unit = ()
