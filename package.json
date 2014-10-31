@@ -1,9 +1,11 @@
 {
   "name": "Ocamltop-HTML",
   "main": "./lib/ocamltop",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Ocaml-Top in Atom",
-  "activationEvents": ["ocamltop:toplevel"],
+  "activationEvents": [
+    "ocamltop:toplevel"
+  ],
   "repository": "https://github.com/tekdreamer/atom-OcamlTopLevel",
   "license": "MIT",
   "engines": {
