@@ -11,12 +11,7 @@ module.exports =
   htmlPreviewView: null
 
   activate: (state) ->
-    @j = true
-    editor = atom.workspace.getActivePaneItem()
-    callback = =>
-      console.log "save"
-      @toplevel messages
-    editor.onDidSave callback
+    @editors = []
     messages = new MessagePanelView rawTitle: true, title: \
           '<font color="red" >Ocaml Top Interpréteur</font>'
     atom.workspaceView.command "ocamltop:toplevel", => @toplevel(messages)
@@ -47,7 +42,21 @@ module.exports =
     {EventEmitter} = require 'events'
     home = @getUserHome()
     editor = atom.workspace.getActivePaneItem()
+
+    Array::include = (term) -> @indexOf(term) isnt -1
+
+#une liste d'editeur serait bien mieux
+    if not @editors.include editor
+      editor = atom.workspace.getActivePaneItem()
+      callback = =>
+        console.log "save"
+        @toplevel messages
+      editor.onDidSave callback
+      @editors.push editor
+
+
     userPanel = atom.workspace.getActivePane()
+
     # Message d'erreur
     messages.close()
     messages.clear()
@@ -59,6 +68,7 @@ module.exports =
     f = file.getPath()
     # nom du fichier courant
     file_name = "#{ file.getBaseName() }"#.replace /.ml/, ""
+
     #test si ML
     strings = file_name.split "."
     if strings[strings.length-1].length != 2 or \
@@ -76,6 +86,7 @@ module.exports =
     console.log "#{ f }"
     exec "env -i /usr/local/bin/ocaml -noprompt -nopromptcont < #{ f } > #{ uri2 };env -i /Users/ByTeK/.opam/system/bin/caml2html #{uri2} -o #{ uri2 }.html" , =>
       fileText = fs.readFileSync("#{ uri2 }.html").toString()
+      exec "env -i rm #{ uri2 };env -i rm #{ uri2 }.html"
 
       editor = atom.workspace.getActiveEditor()
       return unless editor?
@@ -87,12 +98,6 @@ module.exports =
         if htmlPreviewView instanceof HtmlPreviewView
           console.log "reste"
           htmlPreviewView.renderHTML(fileText)
-          if @j
-            console.log "test"
-            rm = ->
-              exec "env -i rm #{ uri2 };env -i rm #{ uri2 }.html"
-            atom.workspace.getActivePane().onDidDestroy rm
-            @j=false
           previousActivePane.activate()
 
 
