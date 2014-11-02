@@ -3,7 +3,9 @@
   "main": "./lib/ocamltop",
   "version": "0.0.0",
   "description": "Ocaml-Top in Atom",
-  "activationEvents": ["ocamltop:toplevel"],
+  "activationEvents": [
+    "ocamltop:toplevel"
+  ],
   "repository": "https://github.com/atom/ocamltop",
   "license": "MIT",
   "engines": {
@@ -11,5 +13,44 @@
   },
   "dependencies": {
     "atom-message-panel": "^1.1.1"
+  },
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [
+      {
+        "name": "atom-message-panel",
+        "version": "1.1.1",
+        "path": "node_modules/atom-message-panel/lib/index.js"
+      }
+    ],
+    "extensions": {
+      ".coffee": [
+        "lib/ocamltop.coffee",
+        "lib/renderOcaml.coffee"
+      ],
+      ".js": [
+        "node_modules/atom-message-panel/lib/LineMessageView.js",
+        "node_modules/atom-message-panel/lib/MessagePanelView.js",
+        "node_modules/atom-message-panel/lib/PlainMessageView.js",
+        "node_modules/atom-message-panel/lib/index.js",
+        "node_modules/atom-message-panel/lib/utils.js"
+      ],
+      ".json": [
+        "node_modules/atom-message-panel/package.json",
+        "package.json"
+      ]
+    },
+    "folders": [
+      {
+        "paths": [
+          "lib",
+          "",
+          "spec"
+        ],
+        "dependencies": {
+          "atom-message-panel": "^1.1.1"
+        }
+      }
+    ]
   }
 }

@@ -9,7 +9,7 @@
     'submenu': [
       'label': 'ocamltop'
       'submenu': [
-        { 'label': 'TopLevel', 'command': 'ocamltop:toplevel' }
+        { 'label': 'toggle', 'command': 'ocamltop:toplevel' }
       ]
     ]
   }
