@@ -13,20 +13,20 @@ Then to use you will need Ocaml, and Opam
 ```apm install ocamltop-html```
 
 Cause we are beginners in Atom Packages i am not able to create a config file so:
-Please change Ocaml and caml2html path in lib/ocamltop.coffee ligne 87.
+Please change Ocaml path in lib/ocamltop.coffee ligne 87.
 
 ### in Linux
-`ocaml` & `$HOME/.opam/system/bin/caml2html`
+`ocaml`
 
 ### in OSX
-`/usr/local/bin/ocaml` & `$HOME/.opam/system/bin/caml2html`
+`/usr/local/bin/ocaml`
 
 
 ## Usage
 
 `ctrl-i`: toggle ocamltop-html
 
-render file are relooad on save 
+render file are relooad on save
 
 TODO:
 Config File
