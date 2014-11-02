@@ -10,7 +10,7 @@ Then to use you will need Ocaml, and Opam
 OcamlTop-Html give you a way to execute Ocaml-Top-Level directly in Atom.
 
 ScreenShot Bellow:
-![screen shot](img/screenshot.png)
+![screen shot](http://i.imgur.com/RasigL7.png)
 
 ## Installing
 ### Requirements
