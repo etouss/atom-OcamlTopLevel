@@ -6,6 +6,9 @@ First let me give back to cesear what he derserve and thanks
 
 Then to use you will need Ocaml, and Opam
 
+##Description
+![screen shot](img/screenshot.png)
+
 ## Installing
 ### Requirements
 1. Install caml2html with opam `opam install caml2html`
