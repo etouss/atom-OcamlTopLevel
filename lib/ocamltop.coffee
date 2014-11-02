@@ -84,7 +84,7 @@ module.exports =
     uri2 = "/tmp/atom-run-tmp-#{ file_name }"
 
     console.log "#{ f }"
-    exec "env -i ocaml -noprompt -nopromptcont < #{ f } > #{ uri2 }; ~/.opam/system/bin/caml2html #{uri2} -o #{ uri2 }.html" , =>
+    exec "env -i /usr/local/bin/ocaml -noprompt -nopromptcont < #{ f } > #{ uri2 }; ~/.opam/system/bin/caml2html #{uri2} -o #{ uri2 }.html" , =>
       fileText = fs.readFileSync("#{ uri2 }.html").toString()
       exec "env -i rm #{ uri2 };env -i rm #{ uri2 }.html"
 
