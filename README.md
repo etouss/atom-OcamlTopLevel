@@ -1,3 +1,5 @@
+You may want to have a look on REPL : https://atom.io/packages/repl which a similar job but better.
+This package is abandonned sorry.
 # ocamltop package
 
 First let me give back to cesear what he derserve and thanks
